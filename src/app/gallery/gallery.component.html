@@ -1,0 +1,21 @@
+<h1 class="title" >Gallery</h1>
+
+<div class="row gallery" *ngIf="gallery_display">
+   <div class="col-sm-6 galleryTitle" *ngFor= "let gal of albumResult" (click)="getId(gal.userId)"><h1>{{gal.userId}}</h1> {{gal.title}}
+</div>
+</div>
+
+<div class="row" *ngIf="thumbnail_display">
+    <div class="col-sm-12">
+    <button class="btn btn-danger" (click)="back()">Back</button>
+     </div>
+    <img *ngFor="let img of searchResult | paginate: { itemsPerPage: 8, currentPage: p }" style="width:100%" [src]="img.url" (click)="myFu(img.url)" class="col-sm-3 img-responsive" style="padding:15px;">
+     <div class="pageinatons">
+    <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
+     </div>
+</div>
+
+<div class="img-modal-box">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <img id="expandedImg" style="width:100%" [src]="thubmnilZoom"> 
+  </div>
